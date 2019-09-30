@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -24,8 +22,6 @@ path_to_temp_max_folder = "./CMIP5_Downscaled_GDF_ds01_1-16/cmip5dc_global_10min
 no_data_value = -9999
 
 
-# In[2]:
-
 
 temp_mean_list = []
 temp_max_list = []
@@ -44,8 +40,6 @@ for i in range(4,10):
 
 
 
-# In[4]:
-
 
 huglin_index_list = []
 huglin_index = np.zeros(temp_mean_list[0].shape, dtype=float)
@@ -58,7 +52,6 @@ for i in range(len(temp_mean_list)):
     huglin_index = huglin_index + huglin_index_list[i]
 
 
-# In[41]:
 
 
 print(huglin_index.shape)
@@ -76,7 +69,6 @@ print(huglin_min_value)
 print(huglin_max_value)
 
 
-# In[7]:
 
 
 huglin_index_min_value = np.amin(huglin_index[huglin_index != no_data_value])
@@ -85,13 +77,11 @@ print(huglin_index_min_value)
 print(huglin_index_max_value)
 
 
-# In[8]:
+
 
 
 ep.plot_bands(huglin_index,cmap='PiYG',scale=False, vmin=huglin_min_value,vmax=huglin_max_value)
 
-
-# In[17]:
 
 
 x,y = huglin_index.shape
@@ -102,19 +92,12 @@ huglin_dataset = xr.DataArray(data=huglin_index, dims=["lat", "lon"], coords=[la
 print(huglin_dataset)
 
 
-# In[35]:
 
-
-test = huglin_dataset.sel(lat=-4.2,lon=-9.7,method='nearest')    #[lat: -90, lon: -180]
-
-
-# In[37]:
+test = huglin_dataset.sel(lat=-4.2,lon=-9.7,method='nearest')   
 
 
 print(test.data)
 
-
-# In[38]:
 
 
 test.data = 0
